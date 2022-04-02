@@ -1,0 +1,13 @@
+<main class="container">
+  <ng-container *ngIf="comments">
+    <app-comment *ngFor="let comment of comments"
+                 (delete)="onDeleteComment($event)"
+                 [comment]="comment"></app-comment>
+  </ng-container>
+
+  <app-new-comment *ngIf="currentUser"
+                   [currentUser]="currentUser"
+                   (comment)="addNewComment($event)"
+  ></app-new-comment>
+
+</main>

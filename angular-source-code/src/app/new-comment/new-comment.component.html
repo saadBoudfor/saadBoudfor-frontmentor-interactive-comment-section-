@@ -1,0 +1,19 @@
+<ng-container *ngIf="currentUser">
+  <div class="new-comment">
+    <div class="avatar-wrapper">
+      <img src="{{'assets/' + currentUser?.image?.png}}" alt="">
+    </div>
+
+    <div class="input-wrapper">
+      <textarea [contentEditable]="false"
+                [(ngModel)]="message" placeholder="Add a comment..."></textarea>
+    </div>
+
+    <div class="action">
+      <button (click)="comment.emit(message); message = '';" [disabled]="!message">
+        {{updateComment ? 'update': 'send'}}
+      </button>
+    </div>
+
+  </div>
+</ng-container>

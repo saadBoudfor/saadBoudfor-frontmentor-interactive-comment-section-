@@ -1,0 +1,83 @@
+<ng-container *ngIf="comment">
+  <div *ngIf="!update" class="container">
+    <div class="score-action-wrapper">
+      <div class="score-container">
+        <span class="increase" (click)="increaseScore()">+</span>
+        <span class="score">{{comment?.score}}</span>
+        <span class="decrease" (click)="decreaseScore()">-</span>
+      </div>
+      <!--   this section is shown only in mobiles devises   -->
+      <div class="action" >
+        <div (click)="onClick()" *ngIf="comment?.user?.username !== currentUser?.username" class="reply">
+          <span class="material-icons icon">reply</span>
+          <span>Reply</span>
+        </div>
+
+        <ng-container *ngIf="comment?.user?.username === currentUser?.username">
+          <div class="delete" (click)="confirmDelete = true">
+            <span class="material-icons icon">delete</span>
+            <span>delete</span>
+          </div>
+
+          <div class="edit" (click)="update = true;">
+            <span class="material-icons icon">edit</span>
+            <span>edit</span>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <div class="comment-container">
+      <div class="header">
+        <div class="meta-data">
+          <img src="{{'assets/' + comment?.user?.image?.png}}" alt="avatar">
+          <span class="author">{{comment?.user?.username}}</span>
+          <span class="you-badge" *ngIf="comment?.user?.username === currentUser?.username">you</span>
+          <span class="created-at">{{comment?.createdAt}}</span>
+        </div>
+        <div class="action" >
+          <div (click)="onClick()" *ngIf="comment?.user?.username !== currentUser?.username" class="reply">
+            <span class="material-icons icon">reply</span>
+            <span>Reply</span>
+          </div>
+
+          <ng-container *ngIf="comment?.user?.username === currentUser?.username">
+            <div class="delete" (click)="confirmDelete = true">
+              <span class="material-icons icon">delete</span>
+              <span>delete</span>
+            </div>
+
+            <div class="edit" (click)="update = true;">
+              <span class="material-icons icon">edit</span>
+              <span>edit</span>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <p class="comment">
+        {{comment?.content}}
+      </p>
+    </div>
+  </div>
+  <app-new-comment *ngIf="reply" (comment)="addReply($event, comment)"></app-new-comment>
+  <app-new-comment *ngIf="update && comment.content"
+                   [value]="comment.content"
+                   [updateComment]="update"
+                   (comment)="updateContent($event, comment)"></app-new-comment>
+
+  <div *ngIf="comment?.replies && comment?.replies?.length !==0" class="replies-container">
+    <div class="divider">
+    </div>
+    <!--   this section is shown only in desktop browser   -->
+    <div class="replies">
+      <ng-container *ngFor="let reply of comment.replies">
+        <app-comment [comment]="reply" (delete)="onDeleteReply($event)"></app-comment>
+      </ng-container>
+    </div>
+  </div>
+
+
+</ng-container>
+
+<app-confirmation-modal *ngIf="confirmDelete"
+                        (confirm)="delete.emit(comment)"
+                        (cancel)="confirmDelete=false"></app-confirmation-modal>

@@ -16,5 +16,5 @@
 .prettierignore
 
 /.idea
-comment-section/node_modules
-comment-section/package-lock.json
+angular-source-code/node_modules
+angular-source-code/package-lock.json

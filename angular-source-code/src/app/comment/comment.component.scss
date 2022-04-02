@@ -1,0 +1,184 @@
+@import "src/styles";
+
+.container {
+
+  background-color: $white-color;
+  padding: 20px;
+  margin-bottom: 20px;
+
+  display: flex;
+  align-items: center;
+  border-radius: 7px;
+
+  .score-action-wrapper {
+    .action {
+      display: none;
+    }
+  }
+
+  .score-container {
+    background-color: $background-primary;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 10px;
+    border-radius: 5px;
+    margin-right: 20px;
+    font-weight: 500;
+    color: lightgray;
+
+    .score {
+      color: $accent-color;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .increase, .decrease {
+      cursor: pointer;
+
+      &:hover {
+        color: $accent-color;
+      }
+    }
+  }
+
+  .comment-container {
+    flex: 1;
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .meta-data {
+        display: flex;
+        align-items: center;
+        $avatar-size: 30px;
+        $h-space: 10px;
+
+        img {
+          height: $avatar-size;
+          width: $avatar-size;
+          margin-right: $h-space;
+        }
+
+        .author {
+          margin-right: $h-space;
+          color: $text-accent-color;
+          font-weight: 500;
+        }
+
+        .created-at {
+          color: $text-primary-color;
+        }
+
+        .you-badge {
+          margin-right: $h-space;
+          background-color: $accent-color;
+          color: $white-color;
+          padding: 3px 4px;
+        }
+      }
+    }
+
+    p.comment {
+      color: $text-primary-color;
+    }
+  }
+}
+
+.action {
+  display: flex;
+
+  .reply, .edit, .delete {
+    display: flex;
+    align-items: center;
+    color: $accent-color;
+    font-weight: 500;
+    cursor: pointer;
+
+    .icon {
+      margin-right: 2px;
+      font-size: 18px;
+    }
+
+    &:hover {
+      color:  hsl(239, 57%, 85%);
+    }
+  }
+
+  .delete {
+    color: $warn-color;
+    margin-right: 15px;
+
+    &:hover {
+      color: hsl(357, 100%, 86%);
+    }
+  }
+}
+
+.replies-container {
+  display: flex;
+
+  .divider {
+    border-left: 1px solid #d3d3d35c;
+    margin: 0 30px;
+  }
+
+  .replies {
+    flex: 1;
+  }
+}
+
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+@media (max-width: 450px) {
+  .container {
+    flex-direction: column-reverse;
+    align-items: self-start;
+
+    .score-action-wrapper {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      .action {
+        display: flex;
+      }
+    }
+
+    .comment-container {
+      .header {
+        .action {
+          display: none;
+        }
+      }
+    }
+
+    .score-container {
+      flex-direction: row;
+      padding: 5px 18px;
+
+      .score {
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+    }
+  }
+
+  .replies-container {
+    .divider {
+      margin: 0 15px;
+    }
+  }
+}
+
+app-new-comment {
+  margin-bottom: 20px;
+}

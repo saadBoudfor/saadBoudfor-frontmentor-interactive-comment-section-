@@ -1,0 +1,61 @@
+@import "src/styles";
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 12px;
+}
+
+
+section.confirmation-message {
+  background-color: $white-color;
+  height: fit-content;
+  padding: 20px;
+  border-radius: 7px;
+  color: $text-primary-color;
+
+  p {
+    max-width: 300px;
+  }
+
+  h2 {
+    margin: 0;
+    color: hsl(211, 10%, 45%);
+  }
+
+  .action {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      padding: 12px 14px;
+      color: $white-color;
+      text-transform: uppercase;
+
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 16px;
+
+      &.cancel {
+        background-color: hsl(211, 10%, 45%);
+      }
+
+      &.submit {
+        background-color: $warn-color;
+      }
+    }
+  }
+
+
+}
